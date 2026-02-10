@@ -25,7 +25,7 @@ serde_json = "1"
 uuid = { version = "1.0", features = ["v4", "fast-rng", "macro-diagnostics"] }
 tauri-plugin-shell = "2.3.3"
 tauri-plugin-fs = "2.0.0"
-ssh2 = "0.9.4"
+ssh2 = { version = "0.9.4", features = ["vendored-openssl"] }
 tokio = { version = "1", features = ["full"] }
 sysinfo = "0.30"
 tauri-plugin-dialog = "2"
@@ -40,7 +40,7 @@ sqlx = { version = "0.8", features = [ "sqlite", "runtime-tokio" ] }
 tauri-plugin-autostart = "2.5.1"
 chrono = { version = "0.4", features = ["serde"] }
 font-kit = "0.11"
-reqwest = { version = "0.11", features = ["json", "stream", "multipart"] }
+reqwest = { version = "0.11", default-features = false, features = ["json", "stream", "multipart", "rustls-tls"] }
 zip = "0.6"
 walkdir = "2"
 regex = "1"
