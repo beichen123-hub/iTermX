@@ -27,12 +27,7 @@ jobs:
       - name: Setup Rust
         uses: dtolnay/rust-toolchain@stable
         with:
-          targets: aarch64-linux-android, armv7-linux-androideabi, x86_64-linux-android, i686-linux-android
-
-      - name: Rust Cache
-        uses: Swatinem/rust-cache@v2
-        with:
-          workspaces: "src-tauri -> target"
+          targets: aarch64-linux-android
 
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -43,15 +38,10 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Initialize and Build Android
+      - name: Build Android
         run: |
-          # 1. 自动生成安卓项目骨架
           pnpm tauri android init
-          
-          # 2. 告诉系统 NDK 的具体位置（这是 GitHub 服务器的默认路径）
           export ANDROID_NDK_HOME=$ANDROID_SDK_ROOT/ndk/25.2.9519653
-          
-          # 3. 运行编译命令
           pnpm tauri android build --debug
 
       - name: Upload APK
